@@ -1,0 +1,56 @@
+How to setting npm start without sudo on MAC OS use simple Option.
+
+Open Terminal
+===============
+1. Check your username computer/laptop with. 
+    Command=  whoami
+
+2. Go to your Users directory.
+3. create directory for the npm global.
+    Command= mkdir npm-global
+
+4.  # Go to npm-global directory.
+        Command= cd npm-global
+
+    # Print your working directory.
+        Command= pwd
+        Example result > /Users/mac/npm-global
+
+5. Set prefix to be the directory.
+        Command= npm config set prefix "your working directory"
+        Example > npm config set prefix /Users/mac/npm-global
+
+6. check install.
+        Command= npm install -g jshint
+
+    # You'll see that it does download it to the correct directory.
+    # then check command.
+        Command= jshint
+
+    # the result is like this ->  jshint : command not found
+    # because we don't have this directory in our system's $PATH
+    # We can solve this easily with edit file ".profile"
+        Command= vi ~/.profile
+        #However maybe your .profile file is a *Read-only* you can change to *Read-Write* with direct input command into vi ~/.profile
+          Command=  :wq!
+        #Re-open again .profile with command: vi ~/.profile
+          
+    # and then add a line
+        Command= export PATH=/Users/"your_username laptop"/"your directory created npm global"/bin:$PATH
+        Example > export PATH=/Users/mac/npm-global/bin:$PATH
+
+    #for the save and exit on .profile input command into vi ~/.profile
+        Command=  :wq
+
+7. The final you need to refresh the variables on .prolile so that the system knows what the new $PATH is.
+      Command= source ~/.profile
+
+
+
+-------------------------------------
+Thank you,
+Hopefully this is will help you,
+
+
+  
+        
